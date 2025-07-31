@@ -1,0 +1,195 @@
+*{
+  margin: 0;padding: 0;box-sizing: border-box;
+}
+:root{
+  --p: #87ffc9;
+  --y:#E1B200;
+}
+body{
+  background: #181400;
+}
+header{
+  /*
+  width: 100%;
+  height: 150px;
+  background: #2e2e2e;
+  border-bottom: 2px solid var(--p);
+  */
+}
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  padding: 50px 5%;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.menu i{
+  font-size: 2rem;
+  color: var(--p);
+  display: none;
+}
+.logo{
+  font-size: 30px;
+  color: var(--p);
+  font-weight: 700;
+  text-decoration: none;
+}
+.logo span{
+  color: var(--y);
+}
+.link ul{
+  display: flex;
+  align-items: center;
+}
+.link ul li{
+  margin-left: 30px;
+  list-style: none;
+  position: relative;
+}
+.link ul li::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background: var(--y);
+  bottom: -6px;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+.link ul li:hover:before{
+  width: 100%;
+}
+.link ul li a{
+  text-decoration: none;
+  font-size: 20px;
+  color: var(--p);
+}
+.link ul li a:hover{
+  color: var(--y);
+}
+.icon{
+  padding: 0px 30px 0px 0px;
+  border-left: 2px solid var(--p);
+  border-right: 2px solid var(--p);
+}
+.icon a i{
+  font-size: 22px;
+  color: var(--p);
+  margin-left: 30px;
+}
+.icon a i:hover{
+  color: var(--y);
+}
+.btn{
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+  outline: none;
+  border: 2px solid var(--p);
+  cursor: pointer;
+  border-radius: 10px;
+  color: #fff;
+  background: none;
+  position: relative;
+  overflow: hidden;
+}
+.btn::before{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: var(--y);
+  left: 0;
+  top: 100%;
+  transition: .5s;
+  z-index: -1;
+}
+.btn:hover:before {
+  top: 0;
+}
+.btn:hover{
+  color: #000;
+  border: 2px solid var(--y);
+}
+@media (max-width: 768px) {
+  header{
+    height: 80px;
+  }
+  header a{
+    font-size: 22px;
+  }
+  nav{
+    padding: 20px 5%;
+  }
+  .link, .icon,header button{
+    display: none;
+  }
+  .menu i{
+    display: block;
+    transition: .5s;
+  }
+  .menu i:hover{
+    transform: scale(1.1);
+    color: var(--y);
+  }
+}
+/*herro section start*/
+.herro{
+  height: 100vh;
+  padding: 5%;
+  color: #000;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("herro-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  background-position: 70%;
+}
+.content h3{
+  font-size: 40px;
+}
+.content h1{
+  font-size: 100px;
+  line-height: 1.1;
+}
+.content h1 span{
+  color: var(--p);
+}
+.content button{
+  z-index: 99;
+  margin-left: 10px 20px;
+}
+.content h2{
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: 700;
+  -webkit-text-stroke: 2px var(--p);
+  -webkit-text-fill-color: transparent ;
+  background: linear-gradient(to right, #2e2e2e 50%,transparent 50%);
+  background-clip: text;
+  background-size: 200%;
+  background-position: 100%;
+  transition: .5s;
+}
+.content h2:hover{
+  background-position: 0%;
+}
+@media (max-width: 768px){
+  .content h3{
+    font-size: 25px;
+  }
+  .content h1{
+    font-size: 35px;
+  }
+  .content h2{
+    font-size: 28px;
+  }
+  .content .btn {
+    width: 120px;
+    height: 40px;
+    font-size: 14px;
+  }
+}
