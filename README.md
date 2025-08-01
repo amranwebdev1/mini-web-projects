@@ -13,6 +13,7 @@ This repository is dedicated to practicing and showcasing small, creative web co
 | 02          | Portfolio Herro section | A responsive Smart Herro Section |
 | 03          | Portfolio Herro section | Simple Design Herro Section |
 | 04          | Portfolio Herro section | This is a responsive hero section with the video set as the background. |
+| 05          | Text Reflection Effects | Text Reflection Effects |
 
 
 > ✅ *More projects will be added regularly!*
