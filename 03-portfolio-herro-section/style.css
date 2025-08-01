@@ -1,0 +1,103 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  list-style: none;
+  text-decoration: none;
+  color: #1f1f1f;
+}
+header{
+  width: 100%;
+  height: 10vh;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo .logo-icon{
+  width: 50px;
+  height: 50px;
+  background: #33cccc;
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%;
+}
+.logo .logo-text{
+  font-size: 2rem;
+}
+.navbar ul{
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+.navbar ul li:hover a{
+  color: #33cccc;
+  border-bottom: 2px solid #33cccc;
+}
+/*herro section start*/
+.herro-section{
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 100px;
+}
+.herro-left{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.herro-left .p1 p{
+  font-size: 22px;
+  word-spacing: 5px;
+  letter-spacing: 10px;
+}
+.herro-left .p2 p{
+  font-size: 5rem;
+  font-weight: 900;
+}
+.herro-left .btn-section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.btn1 .btn2,button{
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+.btn1 button{
+  background: transparent;
+  border: 1px solid #33cccc;
+  color: #000;
+}
+.btn1 button:hover{
+  color: #fff;
+  background: #33cccc;
+}
+.btn2 button{
+  background:  #33cccc;
+  border: 1px solid #33cccc;
+  color: #fff;
+}
+.btn2 button:hover{
+  background: transparent;
+  color: #000;
+}
+.herro-right img{
+  width: 400px;
+}
