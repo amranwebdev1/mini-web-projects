@@ -15,8 +15,7 @@ This repository is dedicated to practicing and showcasing small, creative web co
 | 04          | Portfolio Herro section | This is a responsive hero section with the video set as the background. |
 | 05          | Text Reflection Effects | Text Reflection Effects |
 | 06          | Profile Card | Smart profile card with smooth hover effect |
-| 07          | 3D Image Carousel using HTML, CSS, and JavaScript
-| A visually engaging 3D image carousel built with pure HTML, CSS, and JavaScript. Images are arranged in a circular layout and rotate along the Y-axis when the button is clicked. This project demonstrates the use of CSS variables, transform-style: preserve-3d, and dynamic rotation using JavaScript to create an interactive 3D gallery.
+| 07          | 3D Image Carousel using HTML, CSS, and JavaScript | A visually engaging 3D image carousel built with pure HTML, CSS, and JavaScript. Images are arranged in a circular layout and rotate along the Y-axis when the button is clicked. This project demonstrates the use of CSS variables, transform-style: preserve-3d, and dynamic rotation using JavaScript to create an interactive 3D gallery.
  |
 
 > ✅ *More projects will be added regularly!*
