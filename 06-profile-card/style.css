@@ -1,0 +1,101 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #233544;
+}
+.card{
+  width: 400px;
+  padding: 30px;
+  background: #233544;
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: -3px -3px 8px #616161,3px 3px 8px #000;
+  transition: .3s;
+}
+.img{
+  width: 180px;
+  height: 180px;
+  margin-top: -130px;
+  margin-inline: auto;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  transition: .3s;
+}
+.img:hover{
+  transform: scale(1.1);
+  box-shadow: -3px -3px 8px #616161,3px 3px 8px #000;
+}
+.img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.container{
+  margin-top: 20px;
+  text-align: center;
+  height: 80px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.card:hover .container {
+  height: 260px;
+}
+.container h1{
+  font-size: 35px;
+  display: inline-block;
+/*  text-shadow: 1px 1px 2px #000,-1px -1px 2px #616161;*/
+  color: #fff;
+}
+.container h2{
+  font-size: 20px;
+}
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 15px;
+}
+.row .coll{
+  text-align: center;
+}
+.row .coll h2{
+  font-size: 22px;
+}
+.row .coll p{
+  font-size: 18px;
+}
+.btn-sec{
+  margin-top: 30px;
+}
+.btn-sec button{
+  padding: 10px 25px;
+  font-size: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #3500FF;
+  color: #000;
+  font-weight: 700;
+}
+.btn-sec button:nth-child(1){
+  background: #3500FF;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .card{
+    width: 300px;
+    padding: 20px;
+  }
+  .btn-sec button{
+    padding: 8px 20px;
+    font-size: 16px;
+  }
+}

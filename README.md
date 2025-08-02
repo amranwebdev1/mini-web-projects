@@ -14,7 +14,7 @@ This repository is dedicated to practicing and showcasing small, creative web co
 | 03          | Portfolio Herro section | Simple Design Herro Section |
 | 04          | Portfolio Herro section | This is a responsive hero section with the video set as the background. |
 | 05          | Text Reflection Effects | Text Reflection Effects |
-
+| 06          | Profile Card | Smart profile card with smooth hover effect |
 
 > ✅ *More projects will be added regularly!*
 
@@ -39,7 +39,7 @@ This repository is dedicated to practicing and showcasing small, creative web co
 ## 👨‍💻 Author
 
 **Md. Amran Hossen**  
-Web Developer | HTML | CSS | PHP | Bootstrap | SQL  
+Web Developer | HTML | CSS |JavaScript| PHP | Bootstrap | SQL  
 🔗 [GitHub Profile](https://github.com/amranwebdev1) *(replace this with your actual username)*
 
 ---
