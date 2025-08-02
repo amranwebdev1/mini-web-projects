@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  <div class=parent>
+    <div class="container">
+    <span style="--i:1;"><img src="1.jpg" alt=""></span>
+    <span style="--i:2;"><img src="2.jpg" alt=""></span>
+    <span style="--i:3;"><img src="3.jpg" alt=""></span>
+    <span style="--i:4;"><img src="4.jpg" alt=""></span>
+    <span style="--i:5;"><img src="5.jpg" alt=""></span>
+    <span style="--i:6;"><img src="6.jpg" alt=""></span>
+    <span style="--i:7;"><img src="7.jpg" alt=""></span>
+    <span style="--i:8;"><img src="8.jpg" alt=""></span>
+    
+  </div>
+</div>
+  <div class="btn-box">
+    <button id="prev">Prev</button>
+    <button id="next">Next</button>
+  </div>
+  <script>
+    let next = document.querySelector('#next');
+    let prev = document.querySelector('#prev');
+    let el = document.querySelector('.container');
+    let count = 0;
+    next.addEventListener('click',()=>{
+      count+=45;
+      el.style.transform = `perspective(700px) rotateY(${count}deg)`
+    })
+    prev.addEventListener('click',()=>{
+      count-=45;
+    el.style.transform = `perspective(700px) rotateY(${count}deg)`
+    })
+  </script>
+</body>
+
+</html>
