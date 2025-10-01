@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>দরজা-জানালার খরচ</title>
+  <style>
+    body {
+      font-family: SolaimanLipi, Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #444;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #ddd;
+    }
+    .section-title {
+      background: #cce5ff;
+      font-weight: bold;
+      text-align: center;
+    }
+    .total-row {
+      background: #d4edda;
+      font-weight: bold;
+    }
+    .grand-total {
+      background: #ffc107;
+      font-weight: bold;
+      text-align: center;
+    }
+    .print-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .print-btn:hover {
+      background: #2980b9;
+    }
+    @media print {
+      .print-btn { display: none; }
+      body { background: #fff; }
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- নেভবার -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="/" data-section="home" class="active">হোম</a></li>
+      <li><a href="/rajMistriWork.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
+      <li><a href="/chal.html" data-section="chal">চালের খরচ</a></li>
+      <li><a href="/sanetary.html" data-section="sanitary">সেনেটারি কাজের খরচ</a></li>
+      <li><a href="/dorjajanala.html" data-section="dorjajanala">দরজা জানালা খরচ</a></li>
+      <li><a href="/rodSiment.html" data-section="rodSiment">রড সিমেন্টের দোকানে</a></li>
+      <li><a href="/other.html" data-section="others">অন্যান্য খরচ</a></li>
+      <li><a href="/total.html" data-section="grand">সর্বমোট খরচ</a></li>
+    </ul>
+  </nav>
+
+  <!-- প্রিন্ট বাটন -->
+  <button class="print-btn" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
+  <h2>দরজা-জানালার জন্য</h2>
+
+  <!-- dulavaike taka dewa hoyeche-->
+  <table>
+    <thead>
+      <tr>
+        <th>ক্রমিক</th>
+        <th>তারিখ</th>
+        <th>টাকা</th>
+      </tr>
+    </thead>
+    <tbody id="ghar"></tbody>
+    <tfoot>
+      <tr class="total-row">
+        <td colspan="2">মোট</td>
+        <td id="gharTotal"></td>
+      </tr>
+    </tfoot>
+  </table>
+  <!-- সর্বমোট -->
+  <table>
+    <tfoot>
+      <tr class="grand-total">
+        <td colspan="2">সর্বমোট</td>
+        <td id="grandTotal"></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script>
+    // বাংলা সংখ্যায় কনভার্ট
+    function toBanglaNumber(n) {
+      const eng = "0123456789";
+      const bng = "০১২৩৪৫৬৭৮৯";
+      return n.toString().split("").map(ch => eng.includes(ch) ? bng[eng.indexOf(ch)] : ch).join("");
+    }
+
+    // তারিখ ফরম্যাট
+    function formatDate(d) {
+      let parts = d.split("/");
+      return toBanglaNumber(parts[0]) + "-" + toBanglaNumber(parts[1]) + "-২০২৫";
+    }
+
+    // ডাটা
+  let loadData = async ()=>{
+    try{
+      let res = await fetch("database.json");
+      let data = await res.json();
+      let brotherData = data.doorWindow;
+   
+    // টেবিল পূরণ
+    function fillTable(id, data, totalId) {
+      let tbody = document.getElementById(id);
+      let total = 0;
+      data.forEach((row, i) => {
+        let tr = document.createElement("tr");
+        tr.innerHTML = `<td>${toBanglaNumber(i+1)}</td><td>${formatDate(row[0])}</td><td>${toBanglaNumber(row[1])}</td>`;
+        tbody.appendChild(tr);
+        total += row[1];
+      });
+      document.getElementById(totalId).innerText = toBanglaNumber(total);
+      return total;
+    }
+
+    let totaldoor_window = fillTable("ghar", brotherData, "gharTotal");
+    
+
+    // গ্র্যান্ড টোটাল
+    document.getElementById("grandTotal").innerText = toBanglaNumber(totaldoor_window);
+    
+    }catch(err){
+      console.log(err.message)
+    }
+  }
+  loadData()
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

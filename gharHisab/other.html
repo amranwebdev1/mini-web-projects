@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>ঘর বাবদ অন্যান্য খরচ</title>
+  <style>
+    body {
+      font-family: SolaimanLipi, Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 20px 15%;
+    }
+    h2 {
+      text-align: center;
+      margin: 20px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #eee;
+    }
+    tfoot td {
+      font-weight: bold;
+      background: #f0f0f0;
+    }
+    .print-btn {
+      display: block;
+      margin: 0 auto 15px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .print-btn:hover {
+      background: #2980b9;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- নেভবার -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="/" data-section="home" class="active">হোম</a></li>
+      <li><a href="/rajMistriWork.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
+      <li><a href="/chal.html" data-section="chal">চালের খরচ</a></li>
+      <li><a href="/sanetary.html" data-section="sanitary">সেনেটারি কাজের খরচ</a></li>
+      <li><a href="/dorjajanala.html" data-section="dorjajanala">দরজা জানালা খরচ</a></li>
+      <li><a href="/rodSiment.html" data-section="rodSiment">রড সিমেন্টের দোকানে</a></li>
+      <li><a href="/other.html" data-section="others">অন্যান্য খরচ</a></li>
+      <li><a href="/total.html" data-section="grand">সর্বমোট খরচ</a></li>
+    </ul>
+  </nav>
+  <!-- Print Button Top -->
+  <button class="print-btn" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
+
+  <h2>ঘর বাবদ অন্যান্য খরচ</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ক্রম</th>
+        <th>আইটেম</th>
+        <th>টাকা</th>
+      </tr>
+    </thead>
+    <tbody id="expense-body">
+      <!-- Data dynamically added -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">সর্বমোট</td>
+        <td id="total"></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script>
+    // বাংলা সংখ্যায় রূপান্তর ফাংশন
+    function toBanglaNumber(n) {
+      const eng = "0123456789";
+      const bng = "০১২৩৪৫৬৭৮৯";
+      return n.toString().split("").map(ch => eng.includes(ch) ? bng[eng.indexOf(ch)] : ch).join("");
+    }
+
+  let loadData = async ()=>{
+    try{
+      let res = await fetch("database.json");
+      let data = await res.json();
+      let expenses = data.others
+    
+    const tbody = document.getElementById("expense-body");
+    const totalCell = document.getElementById("total");
+
+    function renderTable() {
+      tbody.innerHTML = ""; 
+      let total = 0;
+      expenses.forEach((item, index) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${toBanglaNumber(index + 1)}</td>
+          <td>${item[0]}</td>
+          <td>${toBanglaNumber(item[1])}</td>
+        `;
+        tbody.appendChild(tr);
+        total += item[1];
+      });
+      totalCell.textContent = toBanglaNumber(total);
+    }
+
+    renderTable();
+    }catch(err){
+      console.log(err.message)
+    }
+  }
+  loadData()
+  </script>
+<script src="script.js"></script>
+</body>
+</html>
