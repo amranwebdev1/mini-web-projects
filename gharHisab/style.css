@@ -12,7 +12,7 @@ body {
 }
 
 .navbar ul {
-  padding: 0;
+  padding: 3px 5%;
   margin: 0;
   list-style: none;
   display: flex;
@@ -50,10 +50,11 @@ body {
 }
 
 table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
   margin-bottom: 20px;
   background: #fff;
+  margin: 20px auto;
 }
 
 th, td {

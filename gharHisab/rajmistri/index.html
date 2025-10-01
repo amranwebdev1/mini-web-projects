@@ -2,6 +2,7 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>রাজমিস্ত্রিকে টাকা দেওয়া</title>
   <style>
     body {
@@ -60,20 +61,20 @@
       body { background: #fff; }
     }
   </style>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <!-- নেভবার -->
   <nav class="navbar">
     <ul>
-      <li><a href="/" data-section="home" class="active">হোম</a></li>
-      <li><a href="/rajMistriWork.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
-      <li><a href="/chal.html" data-section="chal">চালের খরচ</a></li>
-      <li><a href="/sanetary.html" data-section="sanitary">সেনেটারি কাজের খরচ</a></li>
-      <li><a href="/dorjajanala.html" data-section="dorjajanala">দরজা জানালা খরচ</a></li>
-      <li><a href="/rodSiment.html" data-section="rodSiment">রড সিমেন্টের দোকানে</a></li>
-      <li><a href="/other.html" data-section="others">অন্যান্য খরচ</a></li>
-      <li><a href="/total.html" data-section="grand">সর্বমোট খরচ</a></li>
+      <li><a href="../" data-section="home" class="active">হোম</a></li>
+      <li><a href="./index.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
+      <li><a href="../chal/index.html" data-section="chal">চালের খরচ</a></li>
+      <li><a href="../senetaryWork/index.html" data-section="sanitary">সেনেটারি কাজের খরচ</a></li>
+      <li><a href="../doorWindow/index.html" data-section="dorjajanala">দরজা জানালা খরচ</a></li>
+      <li><a href="../dukan/index.html" data-section="rodSiment">রড সিমেন্টের দোকানে</a></li>
+      <li><a href="../other/index.html" data-section="others">অন্যান্য খরচ</a></li>
+      <li><a href="../total/index.html" data-section="grand">সর্বমোট খরচ</a></li>
     </ul>
   </nav>
 
@@ -184,7 +185,7 @@
     
   let loadData = async ()=>{
     try{
-      let res = await fetch("database.json");
+      let res = await fetch("../database.json");
       let data = await res.json();
       let gharData = data.rajMistriData.gharData;
       let dalayData = data.rajMistriData.dalayData;
@@ -218,6 +219,6 @@
   }
   loadData()
   </script>
-  <script src="script.js"></script>
+  <script src="../script.js"></script>
 </body>
 </html>

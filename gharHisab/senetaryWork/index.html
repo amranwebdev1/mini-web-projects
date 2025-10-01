@@ -2,7 +2,8 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<title>রড সিমেন্টের দোকানে</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>সেনেটারী কাজের খরচ</title>
 <style>
   body { font-family: SolaimanLipi, Arial, sans-serif; background: #f2f2f2; padding: 20px; }
   h2 { text-align: center; margin-bottom: 20px; }
@@ -45,32 +46,52 @@
   }
   .lightbox:target { display: flex; }
 </style>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <!-- নেভবার -->
   <nav class="navbar">
     <ul>
-      <li><a href="/" data-section="home" class="active">হোম</a></li>
-      <li><a href="/rajMistriWork.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
-      <li><a href="/chal.html" data-section="chal">চালের খরচ</a></li>
-      <li><a href="/sanetary.html" data-section="sanitary">সেনেটারি কাজের খরচ</a></li>
-      <li><a href="/dorjajanala.html" data-section="dorjajanala">দরজা জানালা খরচ</a></li>
-      <li><a href="/rodSiment.html" data-section="rodSiment">রড সিমেন্টের দোকানে</a></li>
-      <li><a href="/other.html" data-section="others">অন্যান্য খরচ</a></li>
-      <li><a href="/total.html" data-section="grand">সর্বমোট খরচ</a></li>
+      <li><a href="../index.html" data-section="home" class="active">হোম</a></li>
+      <li><a href="../rajmistri/index.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
+      <li><a href="../chal/index.html" data-section="chal">চালের খরচ</a></li>
+      <li><a href="./index.html" data-section="sanitary">সেনেটারি কাজের খরচ</a></li>
+      <li><a href="../doorWindow/index.html" data-section="dorjajanala">দরজা জানালা খরচ</a></li>
+      <li><a href="../dukan/index.html" data-section="rodSiment">রড সিমেন্টের দোকানে</a></li>
+      <li><a href="../other/index.html" data-section="others">অন্যান্য খরচ</a></li>
+      <li><a href="../total/index.html" data-section="grand">সর্বমোট খরচ</a></li>
     </ul>
   </nav>
-<button class="print-btn" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
 
-<h2>রড সিমেন্টের দুকানে টাকা দেওয়া হয়েছে </h2>
+<button class="print-btn" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
+<h2>সেনেটারি কাজের খরচ </h2>
+
+<!-- সেনেটারী মিস্ত্রির টেবিল -->
+<table>
+  <thead>
+    <tr><th colspan="3" class="section-title">সেনেটারী মিস্ত্রি</th></tr>
+    <tr>
+      <th>ক্রমিক</th>
+      <th>তারিখ</th>
+      <th>টাকা</th>
+    </tr>
+  </thead>
+  <tbody id="sanitary"></tbody>
+  <tfoot>
+    <tr class="total-row">
+      <td colspan="2">মোট</td>
+      <td id="sanitaryTotal"></td>
+    </tr>
+  </tfoot>
+</table>
 
 <!-- আইটেম+রিসিট টেবিল -->
 <table>
   <thead>
+    <tr><th colspan="4" class="section-title">আইটেম তালিকা</th></tr>
     <tr>
       <th>ক্রমিক</th>
-      <th>তারিখ</th>
+      <th>আইটেম</th>
       <th>টাকা</th>
       <th>রিসিট</th>
     </tr>
@@ -100,10 +121,11 @@
 
  let loadData = async ()=>{
    try{
-   let res = await fetch("database.json");
-   let data = await res.json();
-   let itemsData = data.RotCementDukan;
- 
+     let res = await fetch("../database.json");
+     let data = await res.json();
+     let sanitaryData = data.senetaryData.senetaryMistri;
+     let itemsData = data.senetaryData.senetaryMal;
+   console.log(data)
   // টেবিল পূরণের ফাংশন (সাধারণ)
   function fillTable(id, data, totalId) {
     let tbody = document.getElementById(id);
@@ -121,6 +143,9 @@
     document.getElementById(totalId).innerText = toBanglaNumber(total);
     return total;
   }
+
+  // সেনেটারী টেবিল
+  fillTable("sanitary", sanitaryData, "sanitaryTotal");
 
   // আইটেম+রিসিট টেবিল
   let tbodyItem = document.getElementById("itemTable");
@@ -140,17 +165,16 @@
   });
   document.getElementById("totalAmount").innerText = toBanglaNumber(totalItem);
   }catch(err){
-   console.log(err.message)
-  }
-}
+       console.log(err.message)
+     }
+   }
   // লাইটবক্স দেখানোর ফাংশন
   function showLightbox(src) {
     document.getElementById("lightboxImg").src = src;
     document.getElementById("lightbox").style.display = "flex";
   }
- 
- loadData()
+  loadData()
 </script>
-<script src="script.js"></script>
+<script src="../script.js"></script>
 </body>
 </html>
