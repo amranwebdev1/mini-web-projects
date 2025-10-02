@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>পোস্ট</title>
@@ -11,7 +12,7 @@
   <!-- নেভবার -->
   <nav class="navbar">
     <ul>
-      <li><a href="./" data-section="home" class="active">হোম</a></li>
+      <li><a href="./index.html" data-section="home">হোম</a></li>
       <li><a href="./rajmistri/index.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
       <li><a href="./chal/index.html" data-section="chal">চালের খরচ</a></li>
       <li><a href="./senetaryWork/index.html" data-section="sanitary">সেনেটারি কাজের খরচ</a></li>
@@ -24,8 +25,17 @@
 
   <!-- হোম সেকশন -->
   <section id="home" class="section show">
-    <h2>হোম</h2>
-    
+    <div class="post">
+      <h3>বর্তমানে দুকান বাকি আছে  ১,৮০,৬৮৫ টাকা</h3>
+      <img src="./img/baki.jpg" alt="img">
+      <small>পোস্ট তারিখ:  2/10/2025</small>
+    </div>
+    <div class="post">
+      <h2>দুকান বাকি খাতা pdf</h2>
+      <a download href="./img/dukanKhata.pdf" 
+      style="text-decoration:none;font-size:20px; text-align:center;background: display:inline-block; background:#2404cd;color:#fff; padding:8px 16px; border-radius:5px;"
+       ><i class="fa-solid fa-download"></i>ডাওনলোড</a>
+    </div>
     <div class="post">
       <p>সাচনা থেকে প্রথমবার যখন তিন আনছিলাম।</p>
       <img src="img/tin1.jpg" alt="Post">
@@ -40,6 +50,7 @@
       <h2>কাজের শেষ পর্যায়ে</h2>
       <img src="img/ghar.jpg" alt="Post">
     </div>
+    
   </section>
   <script src="script.js"></script>
 </body>
