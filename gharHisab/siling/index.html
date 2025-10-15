@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>রাজমিস্ত্রিকে টাকা দেওয়া</title>
+  <title>সিলিং এর খরচ</title>
   <style>
     body {
       font-family: SolaimanLipi, Arial, sans-serif;
@@ -68,25 +68,24 @@
   <nav class="navbar">
     <ul>
       <li><a href="../index.html" data-section="home">হোম</a></li>
-      <li><a href="./index.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
+      <li><a href="../rajmistri/index.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
       <li><a href="../chal/index.html" data-section="chal">চালের খরচ</a></li>
       <li><a href="../senetaryWork/index.html" data-section="sanitary">সেনেটারি কাজের খরচ</a></li>
       <li><a href="../doorWindow/index.html" data-section="dorjajanala">দরজা জানালা খরচ</a></li>
       <li><a href="../dukan/index.html" data-section="rodSiment">রড সিমেন্টের দোকানে</a></li>
       <li><a href="../other/index.html" data-section="others">অন্যান্য খরচ</a></li>
-      <li><a href="../siling/index.html" data-section="others"> সিলিং</a></li>
+      <li><a href="./index.html" data-section="others">সিলিং</a></li>
       <li><a href="../total/index.html" data-section="grand">সর্বমোট খরচ</a></li>
     </ul>
   </nav>
 
   <!-- প্রিন্ট বাটন -->
   <button class="print-btn" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
-  <h2>রাজমিস্ত্রিকে টাকা দেওয়া</h2>
+  <h2>সিলিং এর খরচ</h2>
 
-  <!-- ঘরের জন্য -->
+  <!-- dulavaike taka dewa hoyeche-->
   <table>
     <thead>
-      <tr><th colspan="3" class="section-title">ঘরের জন্য</th></tr>
       <tr>
         <th>ক্রমিক</th>
         <th>তারিখ</th>
@@ -101,64 +100,6 @@
       </tr>
     </tfoot>
   </table>
-
-  <!-- দুকানের সামনে ডালায় -->
-  <table>
-    <thead>
-      <tr><th colspan="3" class="section-title">দুকানের সামনে ডালায়</th></tr>
-      <tr>
-        <th>ক্রমিক</th>
-        <th>তারিখ</th>
-        <th>টাকা</th>
-      </tr>
-    </thead>
-    <tbody id="dalay"></tbody>
-    <tfoot>
-      <tr class="total-row">
-        <td colspan="2">মোট</td>
-        <td id="dalayTotal"></td>
-      </tr>
-    </tfoot>
-  </table>
-
-  <!-- ট্যাংকি ও ছাদের জন্য -->
-  <table>
-    <thead>
-      <tr><th colspan="3" class="section-title">ট্যাংকি ও ছাদের জন্য</th></tr>
-      <tr>
-        <th>ক্রমিক</th>
-        <th>তারিখ</th>
-        <th>টাকা</th>
-      </tr>
-    </thead>
-    <tbody id="tank"></tbody>
-    <tfoot>
-      <tr class="total-row">
-        <td colspan="2">মোট</td>
-        <td id="tankTotal"></td>
-      </tr>
-    </tfoot>
-  </table>
-
-  <!-- ফাইব ডাকার গাতনি -->
-  <table>
-    <thead>
-      <tr><th colspan="3" class="section-title">ফাইব ডাকার গাতনি</th></tr>
-      <tr>
-        <th>ক্রমিক</th>
-        <th>তারিখ</th>
-        <th>টাকা</th>
-      </tr>
-    </thead>
-    <tbody id="gatni"></tbody>
-    <tfoot>
-      <tr class="total-row">
-        <td colspan="2">মোট</td>
-        <td id="gatniTotal"></td>
-      </tr>
-    </tfoot>
-  </table>
-
   <!-- সর্বমোট -->
   <table>
     <tfoot>
@@ -178,21 +119,17 @@
     }
 
     // তারিখ ফরম্যাট
-    function formatDate(d) {
+   function formatDate(d) {
       let parts = d.split("/");
       return toBanglaNumber(parts[0]) + "-" + toBanglaNumber(parts[1]) + "-২০২৫";
     }
-
-    
+    // ডাটা
   let loadData = async ()=>{
     try{
       let res = await fetch("../database.json");
       let data = await res.json();
-      let gharData = data.rajMistriData.gharData;
-      let dalayData = data.rajMistriData.dalayData;
-      let tankData = data.rajMistriData.tankData;
-      let gatniData = data.rajMistriData.gatniData;
-    
+      let silingData = data.siling;
+   
     // টেবিল পূরণ
     function fillTable(id, data, totalId) {
       let tbody = document.getElementById(id);
@@ -207,15 +144,14 @@
       return total;
     }
 
-    let totalGhar = fillTable("ghar", gharData, "gharTotal");
-    let totalDalay = fillTable("dalay", dalayData, "dalayTotal");
-    let totalTank = fillTable("tank", tankData, "tankTotal");
-    let totalGatni = fillTable("gatni", gatniData, "gatniTotal");
+    let totaldoor_window = fillTable("ghar", silingData, "gharTotal");
+    
 
     // গ্র্যান্ড টোটাল
-    document.getElementById("grandTotal").innerText = toBanglaNumber(totalGhar + totalDalay + totalTank + totalGatni);
+    document.getElementById("grandTotal").innerText = toBanglaNumber(totaldoor_window);
+    
     }catch(err){
-      console.log(err.message);
+      console.log(err.message)
     }
   }
   loadData()
