@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>চালের খরচ</title>
+  <style>
+    body {
+      font-family: SolaimanLipi, Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      background: white;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #444;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #ddd;
+    }
+    .section-title {
+      background: #cce5ff;
+      font-weight: bold;
+    }
+    .total-row {
+      background: #d4edda;
+      font-weight: bold;
+    }
+    .grand-total {
+      background: #ffc107;
+      font-weight: bold;
+    }
+    .print-btn {
+      padding: 10px 20px;
+      margin: 20px;
+      font-size: 16px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .print-btn:hover {
+      background: #2980b9;
+    }
+    @media print {
+      .print-btn { display: none; }
+      body { background: #fff; }
+    }
+  </style>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- নেভবার -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="../index.html" data-section="home">হোম</a></li>
+      <li><a href="../rajmistri/index.html" data-section="rajmistri">রাজমিস্ত্রির কাজের খরচ</a></li>
+      <li><a href="../chal/index.html" data-section="chal">চালের খরচ</a></li>
+      <li><a href="../senetaryWork/index.html" data-section="sanitary">সেনেটারি কাজের খরচ</a></li>
+      <li><a href="../doorWindow/index.html" data-section="dorjajanala">দরজা জানালা খরচ</a></li>
+      <li><a href="../dukan/index.html" data-section="rodSiment">রড সিমেন্টের দোকানে</a></li>
+      <li><a href="../other/index.html" data-section="others">অন্যান্য খরচ</a></li>
+      <li><a href="../siling/index.html" data-section="others"> সিলিং </a></li>
+      <li><a href="./kol/index.html" data-section="others"> কল </a></li>
+      <li><a href="./index.html" data-section="others"> কারেন্ট </a></li>
+      <li><a href="../total/index.html" data-section="grand">সর্বমোট খরচ</a></li>
+    </ul>
+  </nav>
+
+<button class="print-btn" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
+<h2>চালের খরচ</h2>
+
+<!-- চালের খরচ -->
+<table>
+  <thead>
+    <tr><th colspan="3" class="section-title">কাঠমিস্ত্রিকে দেওয়া</th></tr>
+    <tr><th>ক্রমিক</th><th>তারিখ</th><th>টাকা</th></tr>
+  </thead>
+  <tbody id="karentBody"></tbody>
+  <tfoot>
+    <tr class="total-row"><td colspan="2">মোট</td><td id="karentTotal"></td></tr>
+  </tfoot>
+</table>
+
+<!-- উপকরণের খরচ -->
+<table>
+  <thead>
+    <tr><th colspan="3" class="section-title">উপকরণের খরচ</th></tr>
+    <tr><th>ক্রমিক</th><th>আইটেম</th><th>টাকা</th></tr>
+  </thead>
+  <tbody id="costBody"></tbody>
+  <tfoot>
+    <tr class="total-row"><td colspan="2">মোট</td><td id="costTotal"></td></tr>
+  </tfoot>
+</table>
+
+<!-- সর্বমোট -->
+<table>
+  <tfoot>
+    <tr class="grand-total"><td colspan="2">সর্বমোট</td><td id="grandTotal"></td></tr>
+  </tfoot>
+</table>
+
+<script>
+  // বাংলা সংখ্যায় কনভার্ট
+  function toBanglaNumber(n){
+    const eng = "0123456789";
+    const bng = "০১২৩৪৫৬৭৮৯";
+    return n.toString().split("").map(ch => eng.includes(ch) ? bng[eng.indexOf(ch)] : ch).join("");
+  }
+
+  // তারিখ ফরম্যাট (dd-mm-2025)
+  function formatDate(d){
+    if(d === "-") return "-";
+    let parts = d.split("-");
+    return toBanglaNumber(parts[0]) + "-" + toBanglaNumber(parts[1]) + "-২০২৫";
+  }
+
+  let loadData = async ()=>{
+    try{
+      let res = await fetch("../database.json");
+      let data = await res.json();
+      let karentData = data.karent.karentMistri;
+      let costData = data.karent.karentMal;
+    
+  // টেবিল পূরণ ফাংশন
+  function fillTable(tbodyId, data, totalId, isDate=false){
+    let tbody = document.getElementById(tbodyId);
+    let total = 0;
+    data.forEach((row,i)=>{
+      let tr = document.createElement("tr");
+      if(isDate){
+        tr.innerHTML = `<td>${toBanglaNumber(i+1)}</td><td>${formatDate(row[0])}</td><td>${toBanglaNumber(row[1])}</td>`;
+      }else{
+        tr.innerHTML = `<td>${toBanglaNumber(i+1)}</td><td>${row[0]}</td><td>${toBanglaNumber(row[1])}</td>`;
+      }
+      tbody.appendChild(tr);
+      total += row[1];
+    });
+    document.getElementById(totalId).innerText = toBanglaNumber(total);
+    return total;
+  }
+
+  let totalkarent = fillTable("karentBody", karentData, "karentTotal", true);
+  let totalCost = fillTable("costBody", costData, "costTotal");
+
+  // গ্র্যান্ড টোটাল
+  document.getElementById("grandTotal").innerText = toBanglaNumber(totalkarent + totalCost);
+    }catch(err){
+      console.log(err.message)
+    }
+  }
+  loadData()
+</script>
+<script src="../script.js"></script>
+</body>
+</html>
